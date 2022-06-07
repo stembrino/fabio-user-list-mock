@@ -1,0 +1,1 @@
+# TODO: Create Docker configuration to apply in docker compose
