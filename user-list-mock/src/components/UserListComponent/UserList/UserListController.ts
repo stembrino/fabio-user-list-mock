@@ -4,10 +4,11 @@ import { deepClone } from "../../../tools/helper";
 
 export class UserListController {
   private userService: UserService;
-  private users: any;
+  private users: UserDto[];
 
   constructor(userServce: UserService) {
     this.userService = userServce;
+    this.users = {} as UserDto[];
   }
 
   public updateUserFromAPI = async () => {
@@ -16,7 +17,7 @@ export class UserListController {
 
   public getUsers = () => deepClone(this.users);
 
-  public setUser = (user: UserDto): void => {
-    this.users = user;
+  public setUser = (users: UserDto[]): void => {
+    this.users = users;
   };
 }
