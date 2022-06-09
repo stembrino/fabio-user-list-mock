@@ -1,25 +1,16 @@
-import { useEffect } from "react";
-import { InjectDependency } from "../../../tools/InjectDependency";
+import { useContext } from "react";
 import UserListRow from "../UserListRow/UserListRow";
 import classes from "./UserList.module.css";
 
-import { userDtoMock } from "../../../mock/MockUserDto.mock";
 import { UserDto } from "../../../services/interfaces/dto/UserDto";
+import UserListContext from "../../../store/user-list-store/user-list-context";
 
-const userListController = InjectDependency.injectUserController();
 
-const UserList = (props: any) => {
-  useEffect(() => {
-    // TODO: Use useState to fill the state table from here
-    userListController.updateUserFromAPI();
-  }, []);
+const UserList = () => {
+  const userListContext = useContext(UserListContext);
 
-  const userListItems = userDtoMock.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
-  return (
-    <div className={classes["user-list-container"]}>
-      {userListItems}
-    </div>
-  );
+  const userListItems = userListContext.userList.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
+  return <div  className={classes["user-list-container"]}>{userListItems}</div>;
 };
 
 export default UserList;

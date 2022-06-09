@@ -17,10 +17,10 @@ const UserListRow = (props: Props) => {
   };
   return (
     <>
-      <div style={{ backgroundColor: isRowSelected ? "#d0433c" : "transparent" }} onClick={selectRowHandler} className={classes.row}>
+      <div style={{ backgroundColor: isRowSelected ? "#d0433c" : "white" }} onClick={selectRowHandler} className={classes.row}>
         <UserListCell width="5vw">{props.userDto.id}</UserListCell>
         <UserListCell> {props.userDto.name}</UserListCell>
-        <UserListCell width="20vw"> {props.userDto.email}</UserListCell>
+        <UserListCell width="25vw"> {props.userDto.email}</UserListCell>
         <UserListCell>{props.userDto.address.city}</UserListCell>
         <UserListCell>{props.userDto.company.name}</UserListCell>
         <UserListCell width="5vw"> {props.userDto.website ? "true" : "false"}</UserListCell>

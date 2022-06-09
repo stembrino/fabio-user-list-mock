@@ -1,3 +1,23 @@
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a94f4f;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dfdfdf;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #833c3c;
+}
 .table-container {
   display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
