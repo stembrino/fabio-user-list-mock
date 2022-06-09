@@ -56,7 +56,7 @@ const UserDetails = (props: Props) => {
     console.debug(name, username, email, phone, website);
   };
 
-  const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer" };
+  const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer", backgroundColor: isToEdit ? "#c5c5c5" : "" };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -94,14 +94,14 @@ const UserDetails = (props: Props) => {
         </div>
         <div className={classes.label}>BUSINESS INFO:</div>
         <div className={`${classes["third-block"]} ${classes.block}`}>
-          <div>
-            COMPANY: {userDto.company.name} PHRASE: {userDto.company.catchPhrase} BS: {userDto.company.bs}
-          </div>
+          <div>COMPANY: {userDto.company.name}</div>
+          <div>PHRASE: {userDto.company.catchPhrase}</div>
+          <div>BS: {userDto.company.bs}</div>
         </div>
         <button style={buttonStyles} onClick={editHandler}>
           EDIT
         </button>
-        <input style={buttonStyles} type="submit" value="SUBMIT" />
+        <input style={buttonStyles} type="submit" value="SUBMIT" disabled={!isToEdit} />
       </div>
     </form>
   );

@@ -25,3 +25,14 @@
 
 /* .third-block {
 } */
+
+/* 
+  ##Device = Laptops, Desktops
+*/
+
+@media (max-width: 1395px) {
+  /* CSS */
+  .block {
+    display: block;
+  }
+}
