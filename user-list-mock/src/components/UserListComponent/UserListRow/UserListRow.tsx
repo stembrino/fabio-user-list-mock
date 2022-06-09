@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserDto } from "../../../services/interfaces/dto/UserDto";
-import UserDetails from "../UserDetails/UserDetail";
+import UserDetails from "../UserDetails/UserDetailForm";
 import UserListCell from "../UserListCell/UserListCell";
 import classes from "./UserListRow.module.css";
 

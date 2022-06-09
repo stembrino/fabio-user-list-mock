@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { UserDto } from "../../../services/interfaces/dto/UserDto";
+import UserListContext from "../../../store/user-list-store/user-list-context";
 import classes from "./UserDetails.module.css";
 
 interface Props {
@@ -114,14 +115,16 @@ const UserDetails = (props: Props) => {
     setBs(bsCodeEdited);
   };
 
+  const userListContext = useContext(UserListContext);
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     console.debug(name, username, email, phone, website);
   };
 
-  const deleteHandler = (event: any) => {
+  const deleteHandler = async (event: any) => {
     event.preventDefault();
-    console.debug(userDto.id);
+    await userListContext.removeUserById(userDto.id.toString());
   };
 
   const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer", backgroundColor: isToEdit ? "#c5c5c5" : "" };
@@ -186,7 +189,7 @@ const UserDetails = (props: Props) => {
         <button style={buttonStyles} onClick={editHandler}>
           EDIT
         </button>
-        <input style={buttonStyles} type="submit" value="SUBMIT" disabled={!isToEdit} />
+        <input type="submit" value="SUBMIT" disabled={!isToEdit} />
         <button onClick={deleteHandler}>DELETE</button>
       </div>
     </form>

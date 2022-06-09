@@ -1,32 +1,34 @@
 import { useEffect, useState } from "react";
-import { userDtoMock } from "../../mock/MockUserDto.mock";
 import { UserDto } from "../../services/interfaces/dto/UserDto";
+import { DeleteUserResponse } from "../../services/interfaces/ResponseInterfaces";
+import { deepClone } from "../../tools/helper";
 import { InjectDependency } from "../../tools/InjectDependency";
 import UserListContext from "./user-list-context";
 
-const userListController = InjectDependency.injectUserController();
+const userListService = InjectDependency.injectUserService();
 
 const UserListProvider = (props: any) => {
   const [userList, setUserList] = useState([] as UserDto[]);
   useEffect(() => {
     const updateUserList = async () => {
       console.debug("updateUserList has been called");
-      await userListController.updateUserFromAPI();
-      // TEMP: avoid use api in development
-      // setUserList(userListController.getUsers());
-      setUserList(userDtoMock);
+      const userListDto = await userListService.getUsersDto();
+      setUserList(userListDto);
     };
     updateUserList();
   }, []);
 
-  const removeUserByIdHandler = (id: string) => {};
-
-  const setUserState = (userList: UserDto[]) => {};
+  const removeUserByIdHandler = async (id: string) => {
+    const deleteUserResponse: DeleteUserResponse = await userListService.deleteUser(id);
+    console.debug(deleteUserResponse);
+    setUserList((prevUserList) => {
+      return prevUserList.filter((user: UserDto) => user.id.toString() !== deleteUserResponse.deletedId);
+    });
+  };
 
   const userListContext = {
     userList: userList as UserDto[],
-    removeUser: removeUserByIdHandler,
-    setUserState: setUserState,
+    removeUserById: removeUserByIdHandler,
   };
 
   return <UserListContext.Provider value={userListContext}>{props.children}</UserListContext.Provider>;

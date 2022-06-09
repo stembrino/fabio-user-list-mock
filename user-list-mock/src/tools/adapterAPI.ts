@@ -1,3 +1,7 @@
+import { ServerResponse } from "http";
+import { ServerStreamResponseOptions } from "http2";
+import { DeleteUserResponse } from "../services/interfaces/ResponseInterfaces";
+
 export const getAPI = async (url: string, ...params: string[]): Promise<any> => {
   try {
     // TODO: make request to with parameters.
@@ -26,11 +30,13 @@ export const postAPI = async (url: string, body: object) => {
   }
 };
 
-export const deleteByIdAPI = async (url: string, id: string) => {
+export const deleteByIdAPI = async (url: string, id: string): Promise<DeleteUserResponse> => {
   try {
-    const genericResponseRaw = await fetch(`${url}/${id}`, { method: "DELETE" });
+    const genericResponseRaw: Response = await fetch(`${url}/${id}`, { method: "DELETE" });
     const genericResponse = await genericResponseRaw.json();
-    return genericResponse;
+    if (genericResponseRaw.status === 200) return { status: 200, genericResponse, deletedId: id };
+
+    throw new Error("DELETE request does not work");
   } catch (error) {
     throw error;
   }
