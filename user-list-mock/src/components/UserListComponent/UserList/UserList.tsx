@@ -4,13 +4,14 @@ import classes from "./UserList.module.css";
 
 import { UserDto } from "../../../services/interfaces/dto/UserDto";
 import UserListContext from "../../../store/user-list-store/user-list-context";
+import UserListHeader from "../UserListHeader/UserListHeader";
 
 
 const UserList = () => {
   const userListContext = useContext(UserListContext);
 
   const userListItems = userListContext.userList.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
-  return <div  className={classes["user-list-container"]}>{userListItems}</div>;
+  return <div  className={classes["user-list-container"]}><UserListHeader />{userListItems}</div>;
 };
 
 export default UserList;

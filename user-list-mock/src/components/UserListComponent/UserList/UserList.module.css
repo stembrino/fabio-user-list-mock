@@ -1,7 +1,7 @@
 .user-list-container {
   display: flex;
   flex-direction: column;
-  background-color: aliceblue;
+  position: relative;
   cursor: pointer;
   font-size: 17px;
   width: inherit;

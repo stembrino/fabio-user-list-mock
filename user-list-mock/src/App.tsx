@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <main className="mian-content">
         <UserListProvider>
-          <UserListLayout width="80vw" maxHeight="60vh">
+          <UserListLayout width="80vw" height="60vh">
             <UserList />
           </UserListLayout>
         </UserListProvider>

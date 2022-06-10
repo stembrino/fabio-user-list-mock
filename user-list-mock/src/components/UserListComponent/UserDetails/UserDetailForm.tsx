@@ -124,7 +124,7 @@ const UserDetails = (props: Props) => {
 
   const deleteHandler = async (event: any) => {
     event.preventDefault();
-    await userListContext.removeUserById(userDto.id.toString());
+    userListContext.removeUserById(userDto.id.toString());
   };
 
   const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer", backgroundColor: isToEdit ? "#c5c5c5" : "" };

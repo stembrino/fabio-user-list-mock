@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserDto } from "../../services/interfaces/dto/UserDto";
 import { DeleteUserResponse } from "../../services/interfaces/ResponseInterfaces";
-import { deepClone } from "../../tools/helper";
 import { InjectDependency } from "../../tools/InjectDependency";
 import UserListContext from "./user-list-context";
 
