@@ -1,18 +1,22 @@
-import { useEffect } from "react";
-import { InjectDependency } from "../../../tools/InjectDependency";
+import UserListRow from "../UserListRow/UserListRow";
+import classes from "./UserList.module.css";
 
-const userListController = InjectDependency.injectUserController();
+import { UserDto } from "../../../services/interfaces/dto/UserDto";
+import { useContextUserList } from "../../../store/user-list-store/user-list-context";
+import UserListHeader from "../UserListHeader/UserListHeader";
+import Loading from "../../UI/Loading/Loading";
 
-const UserList = (props: any) => {
-  useEffect(() => {
-    userListController.updateUserFromAPI();
-  }, []);
+interface Props {
+  headerConfig: any;
+}
+const UserList = (props: Props) => {
+  const userListContext = useContextUserList();
+
+  const userListItems = userListContext.userList.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
   return (
-    <div>
-      <button title="CLICK" onClick={() => console.log(userListController.getUsers())}>
-        CLICK
-      </button>
-      <button onClick={userListController.updateUserFromAPI}>Update User From API</button>
+    <div className={classes["user-list-container"]}>
+      <UserListHeader hederConfig={props.headerConfig} />
+      {userListItems.length > 0 ? userListItems : <Loading />}
     </div>
   );
 };

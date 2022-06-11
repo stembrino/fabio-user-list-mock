@@ -1,0 +1,16 @@
+.user-list-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  font-size: 17px;
+  width: inherit;
+  height: inherit;
+}
+
+@media (max-width: 1395px) {
+  /* CSS */
+  .user-list-container {
+    font-size: 12px;
+  }
+}

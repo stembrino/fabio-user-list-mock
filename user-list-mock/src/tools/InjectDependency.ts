@@ -1,6 +1,7 @@
-import { UserListController } from "../components/UserListComponent/UserList/UserListController";
+import { UserFormController } from "../components/UserListComponent/UserForm/UserFormController";
 import { UserService } from "../services/UserService";
 
 export abstract class InjectDependency {
-  public static injectUserController = () => new UserListController(new UserService());
+  public static injectUserService = () => new UserService();
+  public static injectUserFormController = () => new UserFormController();
 }

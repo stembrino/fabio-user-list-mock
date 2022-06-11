@@ -1,49 +1,31 @@
 # fabio-user-list-mock
+
 Created to mock a list of users following some specifications.
 
-# Getting Started with Create React App
+## Run project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Go to package.json level: `cd user-list-mock`
+2. Run command to install all dependencies: `npm install`
+3. Run project: `npm start`
 
-## Available Scripts
+## Architecture project
 
-In the project directory, you can run:
+| FOLDER            | Description                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Layout            | Store layouts like sidebar, navbar or others specific layout to position in main content page.                                       |
+| UI                | store all components that there is no relation with others, like button or loading icon.                                             |
+| UserListComponent | The table list component. The table list component has strict dependencies with User Model. This user model has the following types: |
 
-### `npm start`
+### service
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### store
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### tools
 
-### `npm test`
+## Backlog TODO
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+| TODO                       | DESCRIPTION                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Dosckerfile/Docker Compose | Easy way to deploy or run                                                                                                   |
+| Unit Tests                 | Mainly in service or Controller layer                                                                                       |
+| Refactoring                | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |

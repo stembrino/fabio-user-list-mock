@@ -1,0 +1,11 @@
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 3px 0 3px;
+  min-height: inherit;
+}
