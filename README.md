@@ -8,7 +8,11 @@ Created to mock a list of users following some specifications.
 2. Run command to install all dependencies: `npm install`
 3. Run project: `npm start`
 
-### Backlog TODO
+## Architecture project
+
+describe here
+
+## Backlog TODO
 
 | TODO                       | DESCRIPTION                           |
 | -------------------------- | ------------------------------------- |
