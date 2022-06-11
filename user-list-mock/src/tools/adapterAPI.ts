@@ -29,6 +29,22 @@ export const postAPI = async (url: string, body: object) => {
     throw error;
   }
 };
+export const updateAPI = async (url: string, body: object) => {
+  try {
+    const requestParams = {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+    const genericResponseRaw = await fetch(url, requestParams);
+    const genericResponse = await genericResponseRaw.json();
+    return { genericResponseRaw, genericResponse };
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const deleteByIdAPI = async (url: string, id: string): Promise<DeleteUserResponse> => {
   try {

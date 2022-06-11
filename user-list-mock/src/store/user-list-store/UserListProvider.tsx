@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserDto } from "../../services/interfaces/dto/UserDto";
-import { DeleteUserResponse } from "../../services/interfaces/ResponseInterfaces";
+import { DeleteUserResponse, UpdateUserResponse } from "../../services/interfaces/ResponseInterfaces";
 import { InjectDependency } from "../../tools/InjectDependency";
 import UserListContext from "./user-list-context";
 
@@ -25,9 +25,27 @@ const UserListProvider = (props: any) => {
     });
   };
 
+  const updateUser = async (userDto: UserDto): Promise<number> => {
+    const updateResponse: UpdateUserResponse = await userListService.updateUser(userDto);
+    const userUpdated: UserDto = updateResponse.genericResponse;
+
+    setUserList((prevStateuserList) => {
+      let newUserList = prevStateuserList.map((prevUser: UserDto) => {
+        if (prevUser.id === userUpdated.id) {
+          return userUpdated;
+        }
+        return prevUser;
+      });
+
+      return newUserList;
+    });
+    return updateResponse.status;
+  };
+
   const userListContext = {
     userList: userList as UserDto[],
     removeUserById: removeUserByIdHandler,
+    updateUser,
   };
 
   return <UserListContext.Provider value={userListContext}>{props.children}</UserListContext.Provider>;

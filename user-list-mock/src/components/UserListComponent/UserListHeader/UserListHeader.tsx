@@ -1,18 +1,27 @@
-import { collSizes } from "../../../tools/helper";
 import UserListCell from "../UserListCell/UserListCell";
 import classes from "./UserListHeader.module.css";
 
-const UserListHeader = (props: any) => {
-  return (
-    <div className={classes.header}>
-      <UserListCell width={collSizes.coll1} justifyContent="center">ID</UserListCell>
-      <UserListCell width={collSizes.coll2} justifyContent="center">USERNAME</UserListCell>
-      <UserListCell width={collSizes.coll3} justifyContent="center">E_MAIL</UserListCell>
-      <UserListCell width={collSizes.coll4} justifyContent="center">CITY</UserListCell>
-      <UserListCell width={collSizes.coll5} justifyContent="center">COMPANY NAME</UserListCell>
-      <UserListCell width={collSizes.coll6} justifyContent="center">HAS WEBSITE</UserListCell>
-    </div>
-  );
+interface Header {
+  id: number;
+  width: string;
+  justfyContent: string;
+  text: string;
+}
+
+interface Props {
+  hederConfig: Header[];
+}
+
+const UserListHeader = (props: Props) => {
+  const headerConfig = props.hederConfig.map((header: Header) => {
+    return (
+      <UserListCell key={header.id} width={header.width} justifyContent={header.justfyContent}>
+        {header.text}
+      </UserListCell>
+    );
+  });
+
+  return <div className={classes.header}>{headerConfig}</div>;
 };
 
 export default UserListHeader;

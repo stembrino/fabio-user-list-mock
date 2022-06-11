@@ -1,6 +1,6 @@
-import { deleteByIdAPI, getAPI } from "../tools/adapterAPI";
+import { deleteByIdAPI, getAPI, updateAPI } from "../tools/adapterAPI";
 import { UserDto } from "./interfaces/dto/UserDto";
-import { DeleteUserResponse } from "./interfaces/ResponseInterfaces";
+import { DeleteUserResponse, UpdateUserResponse } from "./interfaces/ResponseInterfaces";
 
 export class UserService {
   private readonly apiUrl = "https://jsonplaceholder.typicode.com/users";
@@ -21,6 +21,16 @@ export class UserService {
     try {
       const deleteUserResponse: DeleteUserResponse = await deleteByIdAPI(this.apiUrl, id);
       return deleteUserResponse;
+    } catch (error) {
+      console.error("Error when deleting a User");
+      throw error;
+    }
+  };
+
+  public updateUser = async (userDto: UserDto): Promise<UpdateUserResponse> => {
+    try {
+      const updateUserResponse = await updateAPI(`${this.apiUrl}/${userDto.id}`, userDto);
+      return { status: updateUserResponse.genericResponseRaw.status, genericResponse: updateUserResponse.genericResponse };
     } catch (error) {
       console.error("Error when deleting a User");
       throw error;
