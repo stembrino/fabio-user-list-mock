@@ -24,7 +24,8 @@ Created to mock a list of users following some specifications.
 
 ## Backlog TODO
 
-| TODO                       | DESCRIPTION                           |
-| -------------------------- | ------------------------------------- |
-| Dosckerfile/Docker Compose | Easy way to deploy or run             |
-| Unit Tests                 | Mainly in service or Controller layer |
+| TODO                       | DESCRIPTION                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Dosckerfile/Docker Compose | Easy way to deploy or run                                                                                                   |
+| Unit Tests                 | Mainly in service or Controller layer                                                                                       |
+| Refactoring                | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |
