@@ -10,11 +10,11 @@ Created to mock a list of users following some specifications.
 
 ## Architecture project
 
-### components
-  - Layout: Store layouts like sidebar, navbar or others specific layout to position in main content page. 
-  - UI: store all components that there is no relation with others, like button or loading icon.
-  - UserListComponent: The table list component. The table list component has strict dependencies with User Model. This user model has the following types:
-  
+| FOLDER            | Description                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Layout            | Store layouts like sidebar, navbar or others specific layout to position in main content page.                                       |
+| UI                | store all components that there is no relation with others, like button or loading icon.                                             |
+| UserListComponent | The table list component. The table list component has strict dependencies with User Model. This user model has the following types: |
 
 ### service
 
