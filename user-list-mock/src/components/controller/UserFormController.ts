@@ -1,4 +1,4 @@
-import { Address, Company, Geo, UserDto } from "../../../services/interfaces/dto/UserDto";
+import { Address, Company, Geo, UserDto } from "../../services/interfaces/dto/UserDto";
 
 export class UserFormController {
   public injectCompany = (name: string, catchPhrase: string, bs: string): Company => ({

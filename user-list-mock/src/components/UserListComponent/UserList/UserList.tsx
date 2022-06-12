@@ -14,10 +14,12 @@ const UserList = (props: Props) => {
 
   const userListItems = userListContext.userList.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
   return (
-    <div className={classes["user-list-container"]}>
-      <UserListHeader hederConfig={props.headerConfig} />
-      {userListItems.length > 0 ? userListItems : <Loading />}
-    </div>
+    <>
+      <div className={classes["user-list-container"]}>
+        <UserListHeader hederConfig={props.headerConfig} />
+        {userListItems.length > 0 ? userListItems : <Loading />}
+      </div>
+    </>
   );
 };
 

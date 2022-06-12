@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { UserDto } from "../../services/interfaces/dto/UserDto";
-import { UpdateUserResponse } from "../../services/interfaces/ResponseInterfaces";
 
 const UserListContext = React.createContext({
   userList: [] as UserDto[],

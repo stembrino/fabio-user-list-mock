@@ -1,0 +1,8 @@
+.container {
+  position: fixed;
+  right: 0;
+  box-shadow: rgb(0 0 0 / 19%) 0px 10px 20px, rgb(0 0 0 / 23%) 0px 6px 6px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #e7e7e7;
+}
