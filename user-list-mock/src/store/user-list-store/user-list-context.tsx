@@ -5,6 +5,7 @@ const UserListContext = React.createContext({
   userList: [] as UserDto[],
   removeUserById: (id: string) => {},
   updateUser: (userDto: UserDto): Promise<number> => ({} as Promise<number>),
+  addUser: (user: UserDto): Promise<number> => ({} as Promise<number>),
 });
 
 export const useContextUserList = () => useContext(UserListContext);

@@ -27,14 +27,14 @@ export class UserFormController {
   });
 
   public injectUserDto = (
-    id: number,
     name: string,
     username: string,
     email: string,
     address: Address,
     phone: string,
     website: string,
-    company: Company
+    company: Company,
+    id?: string
   ): UserDto => ({
     id,
     name,

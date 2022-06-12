@@ -8,5 +8,10 @@ export interface DeleteUserResponse {
 
 export interface UpdateUserResponse {
   status: number;
-  genericResponse: UserDto;
+  userDto: UserDto;
+}
+
+export interface AddUserResponse {
+  status: number;
+  userDto: UserDto;
 }

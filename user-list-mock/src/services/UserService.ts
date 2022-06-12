@@ -1,6 +1,10 @@
-import { deleteByIdAPI, getAPI, updateAPI } from "../tools/adapterAPI";
+import { deleteByIdAPI, getAPI, postAPI, updateAPI } from "../tools/adapterAPI";
 import { UserDto } from "./interfaces/dto/UserDto";
-import { DeleteUserResponse, UpdateUserResponse } from "./interfaces/ResponseInterfaces";
+import {
+  AddUserResponse,
+  DeleteUserResponse,
+  UpdateUserResponse,
+} from "./interfaces/ResponseInterfaces";
 
 export class UserService {
   private readonly apiUrl = "https://jsonplaceholder.typicode.com/users";
@@ -32,7 +36,36 @@ export class UserService {
       const updateUserResponse = await updateAPI(`${this.apiUrl}/${userDto.id}`, userDto);
       return {
         status: updateUserResponse.genericResponseRaw.status,
-        genericResponse: updateUserResponse.genericResponse,
+        userDto: updateUserResponse.genericResponse,
+      };
+    } catch (error) {
+      console.error("Error when deleting a User");
+      throw error;
+    }
+  };
+
+  /**
+   * This function was created because the mock backend jsonplaceholder send always the same id
+   */
+  private tempWorkAroundIdMockIssue = (userDto: UserDto, userList: UserDto[]): void => {
+    const userIds = userList.map((user) => Number(user.id));
+    const hasAlredyAddUser = userIds.includes(Number(userDto.id));
+    if (!hasAlredyAddUser) return;
+    let greatestId = Math.max(...userIds);
+    greatestId++;
+    userDto.id = greatestId.toString();
+  };
+
+  public addUser = async (userDto: UserDto, userList: UserDto[]): Promise<AddUserResponse> => {
+    try {
+      const addUserResponse = await postAPI(this.apiUrl, userDto);
+      const userDtoRespose = addUserResponse.genericResponse as UserDto;
+      userDtoRespose.id = userDtoRespose.id?.toString();
+      console.debug("AUDIT: addUserResponse", addUserResponse);
+      this.tempWorkAroundIdMockIssue(addUserResponse.genericResponse, userList);
+      return {
+        status: addUserResponse.genericResponseRaw.status,
+        userDto: addUserResponse.genericResponse,
       };
     } catch (error) {
       console.error("Error when deleting a User");

@@ -50,6 +50,7 @@ const UserDetails = (props: Props) => {
         deleteHandler={deleteHandlerCallback}
         blockButtons={blockButtons}
         display="flex"
+        hasIdField={true}
       />
     </>
   );

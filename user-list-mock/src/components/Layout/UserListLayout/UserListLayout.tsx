@@ -1,10 +1,12 @@
 import classes from "./UserListLayout.module.css";
+
 interface Props {
   width: string;
   maxHeight?: string;
   height?: string;
   children: any;
 }
+
 const UserListLayout = (props: Props) => {
   return (
     <div

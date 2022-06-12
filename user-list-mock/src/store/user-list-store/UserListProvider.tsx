@@ -24,21 +24,18 @@ const UserListProvider = (props: any) => {
     const deleteUserResponse: DeleteUserResponse = await userListService.deleteUser(id);
     console.debug(deleteUserResponse);
     setUserList((prevUserList) => {
-      return prevUserList.filter(
-        (user: UserDto) => user.id.toString() !== deleteUserResponse.deletedId
-      );
+      return prevUserList.filter((user: UserDto) => user.id !== deleteUserResponse.deletedId);
     });
   };
 
   const updateUser = async (userDto: UserDto): Promise<number> => {
     const updateResponse: UpdateUserResponse = await userListService.updateUser(userDto);
-    const userUpdated: UserDto = updateResponse.genericResponse;
+    const userUpdated: UserDto = updateResponse.userDto;
 
-    setUserList((prevStateuserList) => {
-      const newUserList = prevStateuserList.map((prevUser: UserDto) => {
-        if (prevUser.id === userUpdated.id) {
-          return userUpdated;
-        }
+    setUserList((prevUserListState) => {
+      const newUserList = prevUserListState.map((prevUser: UserDto) => {
+        if (prevUser.id === userUpdated.id) return userUpdated;
+
         return prevUser;
       });
 
@@ -47,10 +44,20 @@ const UserListProvider = (props: any) => {
     return updateResponse.status;
   };
 
+  const addUser = async (userDto: UserDto): Promise<number> => {
+    const addUserResponse = await userListService.addUser(userDto, userList);
+    setUserList((prevUserListState) => {
+      const newUserListState = prevUserListState.concat(addUserResponse.userDto);
+      return newUserListState;
+    });
+    return addUserResponse.status;
+  };
+
   const userListContext = {
     userList: userList as UserDto[],
     removeUserById: removeUserByIdHandler,
     updateUser,
+    addUser,
   };
 
   return (

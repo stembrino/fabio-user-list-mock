@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 export const AddUserContext = React.createContext({
-  isFormClosed: false,
+  isFormClosed: true,
   closeForm: () => {},
   openForm: () => {},
 });
 
 const AddUserProvider = (props: any) => {
-  const [isFormClosed, setIsFormClosed] = useState(false);
+  const [isFormClosed, setIsFormClosed] = useState(true);
 
   const closeForm = () => {
     setIsFormClosed(true);

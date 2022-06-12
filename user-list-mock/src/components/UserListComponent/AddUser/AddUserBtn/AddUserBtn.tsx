@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AddUserContext } from "../../../../store/add-user-store/AddUserProvider";
+import Button from "../../../UI/Button/Button";
 import classes from "./AddUserBtn.module.css";
 
 const AddUserBtn = () => {
@@ -10,9 +11,13 @@ const AddUserBtn = () => {
     addUserContext.isFormClosed ? addUserContext.openForm() : addUserContext.closeForm();
   };
   return (
-    <button onClick={openAddUserFormHandler} className={classes["add-user-btn"]}>
-      ADD USER
-    </button>
+    <Button
+      text="Add User"
+      clickHandler={openAddUserFormHandler}
+      hasCLicked={addUserContext.isFormClosed}
+      coloUnclicked="#437bdb"
+      colorClicked="#2f5ead"
+    />
   );
 };
 

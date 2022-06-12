@@ -13,6 +13,9 @@ interface Props {
   hideEditBtn?: boolean;
   hideDeleteBtn?: boolean;
   display: string;
+  hasIdField?: boolean;
+  cleanFields?: any;
+  cleanFieldsAfterSubmit?: boolean;
 }
 
 const userFormController = InjectDependency.injectUserFormController();
@@ -124,29 +127,46 @@ const UserForm = (props: Props) => {
     props.editHandler();
   };
 
-  const submiHandler = (event: any) => {
+  const cleanFields = () => {
+    setName("");
+    setUsername("");
+    setEmail("");
+    setPhone("");
+    setStreet("");
+    setWebsite("");
+    setSuite("");
+    setCity("");
+    setZipcode("");
+    setLat("");
+    setLng("");
+    setCompanyName("");
+    setCatchPhrase("");
+    setBs("");
+  };
+
+  const submiHandler = async (event: any) => {
     event.preventDefault();
     const geo = userFormController.injectGeo(lat, lng);
     const companyInfo: Company = userFormController.injectCompany(companyName, catchPhrase, bs);
     const address: Address = userFormController.injectAddress(street, suite, city, zipcode, geo);
     const userDto: UserDto = userFormController.injectUserDto(
-      props.userDto.id,
       name,
       username,
       email,
       address,
       phone,
       website,
-      companyInfo
+      companyInfo,
+      props.userDto.id
     );
-    console.debug("send user to Edit", userDto);
     const isValiduser = userFormController.validateUser(userDto);
-    isValiduser && props.submitHandler(userDto);
+    isValiduser && (await props.submitHandler(userDto));
+    props.cleanFieldsAfterSubmit && cleanFields();
   };
 
   const deleteHandler = async (event: any) => {
     event.preventDefault();
-    props.deleteHandler(userDto.id.toString());
+    props.deleteHandler(userDto.id);
   };
 
   const buttonStyles = {
@@ -165,16 +185,22 @@ const UserForm = (props: Props) => {
     const inputToOthersDisplays = (
       <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />
     );
-    return props.enableEdit ? (
-      isDisplayBlock ? (
-        inputToDisplayBlock
-      ) : (
-        inputToOthersDisplays
-      )
-    ) : (
-      <span>{value}</span>
-    );
+    if (!props.enableEdit) {
+      return <span>{value}</span>;
+    }
+    if (isDisplayBlock) {
+      return inputToDisplayBlock;
+    }
+    return inputToOthersDisplays;
   };
+
+  const displayIdField = () =>
+    props.hasIdField && (
+      <div>
+        {" "}
+        ID: <span>{userDto.id}</span>{" "}
+      </div>
+    );
 
   return (
     <form onSubmit={submiHandler}>
@@ -188,9 +214,7 @@ const UserForm = (props: Props) => {
           className={`${classes["first-block"]} ${classes.block}`}
           style={{ display: props.display }}
         >
-          <div>
-            ID: <span>{userDto.id}</span>
-          </div>
+          {displayIdField()}
           <div>
             <label>NAME:</label> {displayInputContent(name, nameHandleChange)}
           </div>

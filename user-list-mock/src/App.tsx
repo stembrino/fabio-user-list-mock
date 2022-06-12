@@ -8,6 +8,8 @@ import AddUser from "./components/UserListComponent/AddUser/AddUser";
 import UserList from "./components/UserListComponent/UserList/UserList";
 import UserListProvider from "./store/user-list-store/UserListProvider";
 import AddUserProvider from "./store/add-user-store/AddUserProvider";
+import AppLayout from "./components/Layout/AppLayout/AppLayout";
+import ToolbarLayout from "./components/Layout/ToolbarLayout/AddUserFormLayout";
 
 function App() {
   return (
@@ -15,13 +17,17 @@ function App() {
       <main className="mian-content">
         <UserListProvider>
           <AddUserProvider>
-            <AddUserBtn />
-            <UserListLayout width="80vw" height="60vh">
-              <UserList headerConfig={headerConfig} />
-            </UserListLayout>
-            <AddUserFormLayout>
-              <AddUser />
-            </AddUserFormLayout>
+            <AppLayout>
+              <ToolbarLayout>
+                <AddUserBtn />
+              </ToolbarLayout>
+              <UserListLayout width="80vw" height="60vh">
+                <UserList headerConfig={headerConfig} />
+              </UserListLayout>
+              <AddUserFormLayout>
+                <AddUser />
+              </AddUserFormLayout>
+            </AppLayout>
           </AddUserProvider>
         </UserListProvider>
       </main>
