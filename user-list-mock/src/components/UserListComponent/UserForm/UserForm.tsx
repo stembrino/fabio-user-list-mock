@@ -129,7 +129,16 @@ const UserForm = (props: Props) => {
     const geo = userFormController.injectGeo(lat, lng);
     const companyInfo: Company = userFormController.injectCompany(companyName, catchPhrase, bs);
     const address: Address = userFormController.injectAddress(street, suite, city, zipcode, geo);
-    const userDto: UserDto = userFormController.injectUserDto(props.userDto.id, name, username, email, address, phone, website, companyInfo);
+    const userDto: UserDto = userFormController.injectUserDto(
+      props.userDto.id,
+      name,
+      username,
+      email,
+      address,
+      phone,
+      website,
+      companyInfo
+    );
     console.debug("send user to Edit", userDto);
     const isValiduser = userFormController.validateUser(userDto);
     isValiduser && props.submitHandler(userDto);
@@ -140,7 +149,11 @@ const UserForm = (props: Props) => {
     props.deleteHandler(userDto.id.toString());
   };
 
-  const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer", backgroundColor: props.enableEdit ? "#c5c5c5" : "" };
+  const buttonStyles = {
+    margin: "10px 5px 10px 5px",
+    cursor: "pointer",
+    backgroundColor: props.enableEdit ? "#c5c5c5" : "",
+  };
 
   const displayInputContent = (value: string, callbackFunciont: any, type: string = "text") => {
     const isDisplayBlock = props.display === "block";
@@ -149,15 +162,32 @@ const UserForm = (props: Props) => {
         <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />
       </div>
     );
-    const inputToOthersDisplays = <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />;
-    return props.enableEdit ? isDisplayBlock ? inputToDisplayBlock : inputToOthersDisplays : <span>{value}</span>;
+    const inputToOthersDisplays = (
+      <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />
+    );
+    return props.enableEdit ? (
+      isDisplayBlock ? (
+        inputToDisplayBlock
+      ) : (
+        inputToOthersDisplays
+      )
+    ) : (
+      <span>{value}</span>
+    );
   };
 
   return (
     <form onSubmit={submiHandler}>
-      <div className={`${classes["detail-container"]} ${props.enableEdit ? "" : classes["remove-all-styles"]}`}>
+      <div
+        className={`${classes["detail-container"]} ${
+          props.enableEdit ? "" : classes["remove-all-styles"]
+        }`}
+      >
         <div className={classes.label}>USER INFO:</div>
-        <div className={`${classes["first-block"]} ${classes.block}`} style={{ display: props.display }}>
+        <div
+          className={`${classes["first-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
           <div>
             ID: <span>{userDto.id}</span>
           </div>
@@ -180,7 +210,10 @@ const UserForm = (props: Props) => {
           </div>
         </div>
         <div className={classes.label}>ADDRESS:</div>
-        <div className={`${classes["second-block"]} ${classes.block}`} style={{ display: props.display }}>
+        <div
+          className={`${classes["second-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
           <div>
             <label>STREET:</label> {displayInputContent(street, streetHandleChange)}
           </div>
@@ -194,13 +227,20 @@ const UserForm = (props: Props) => {
             <label>ZIPCODE:</label> {displayInputContent(zipcode, zipCodeHandleChange)}
           </div>
         </div>
-        <div className={`${classes["second-sub-block"]} ${classes.block}`} style={{ display: props.display }}>
+        <div
+          className={`${classes["second-sub-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
           <div className={"italic"}>
-            <label>GEO:</label> (lat) {displayInputContent(lat, latCodeHandleChange)} (lng) {displayInputContent(lng, lngCodeHandleChange)}
+            <label>GEO:</label> (lat) {displayInputContent(lat, latCodeHandleChange)} (lng){" "}
+            {displayInputContent(lng, lngCodeHandleChange)}
           </div>
         </div>
         <div className={classes.label}>BUSINESS INFO:</div>
-        <div className={`${classes["third-block"]} ${classes.block}`} style={{ display: props.display }}>
+        <div
+          className={`${classes["third-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
           <div>
             <label>COMPANY:</label> {displayInputContent(companyName, companyNameCodeHandleChange)}
           </div>
@@ -213,7 +253,12 @@ const UserForm = (props: Props) => {
         </div>
       </div>
       <div className={classes["panel-buttons"]}>
-        <button style={buttonStyles} onClick={editHandler} disabled={props.blockButtons} hidden={props.hideEditBtn}>
+        <button
+          style={buttonStyles}
+          onClick={editHandler}
+          disabled={props.blockButtons}
+          hidden={props.hideEditBtn}
+        >
           EDIT
         </button>
         <input type="submit" value="SUBMIT" disabled={!props.enableEdit || props.blockButtons} />

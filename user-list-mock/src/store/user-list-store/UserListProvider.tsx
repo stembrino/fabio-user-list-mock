@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { UserDto } from "../../services/interfaces/dto/UserDto";
-import { DeleteUserResponse, UpdateUserResponse } from "../../services/interfaces/ResponseInterfaces";
+import {
+  DeleteUserResponse,
+  UpdateUserResponse,
+} from "../../services/interfaces/ResponseInterfaces";
 import { InjectDependency } from "../../tools/InjectDependency";
 import UserListContext from "./user-list-context";
 
@@ -21,7 +24,9 @@ const UserListProvider = (props: any) => {
     const deleteUserResponse: DeleteUserResponse = await userListService.deleteUser(id);
     console.debug(deleteUserResponse);
     setUserList((prevUserList) => {
-      return prevUserList.filter((user: UserDto) => user.id.toString() !== deleteUserResponse.deletedId);
+      return prevUserList.filter(
+        (user: UserDto) => user.id.toString() !== deleteUserResponse.deletedId
+      );
     });
   };
 
@@ -30,7 +35,7 @@ const UserListProvider = (props: any) => {
     const userUpdated: UserDto = updateResponse.genericResponse;
 
     setUserList((prevStateuserList) => {
-      let newUserList = prevStateuserList.map((prevUser: UserDto) => {
+      const newUserList = prevStateuserList.map((prevUser: UserDto) => {
         if (prevUser.id === userUpdated.id) {
           return userUpdated;
         }
@@ -48,7 +53,9 @@ const UserListProvider = (props: any) => {
     updateUser,
   };
 
-  return <UserListContext.Provider value={userListContext}>{props.children}</UserListContext.Provider>;
+  return (
+    <UserListContext.Provider value={userListContext}>{props.children}</UserListContext.Provider>
+  );
 };
 
 export default UserListProvider;

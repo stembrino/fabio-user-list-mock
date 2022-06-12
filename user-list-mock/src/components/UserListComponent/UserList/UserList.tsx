@@ -12,7 +12,9 @@ interface Props {
 const UserList = (props: Props) => {
   const userListContext = useContextUserList();
 
-  const userListItems = userListContext.userList.map((userDto: UserDto) => <UserListRow key={userDto.id} userDto={userDto} />);
+  const userListItems = userListContext.userList.map((userDto: UserDto) => (
+    <UserListRow key={userDto.id} userDto={userDto} />
+  ));
   return (
     <>
       <div className={classes["user-list-container"]}>

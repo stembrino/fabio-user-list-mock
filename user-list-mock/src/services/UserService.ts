@@ -30,7 +30,10 @@ export class UserService {
   public updateUser = async (userDto: UserDto): Promise<UpdateUserResponse> => {
     try {
       const updateUserResponse = await updateAPI(`${this.apiUrl}/${userDto.id}`, userDto);
-      return { status: updateUserResponse.genericResponseRaw.status, genericResponse: updateUserResponse.genericResponse };
+      return {
+        status: updateUserResponse.genericResponseRaw.status,
+        genericResponse: updateUserResponse.genericResponse,
+      };
     } catch (error) {
       console.error("Error when deleting a User");
       throw error;

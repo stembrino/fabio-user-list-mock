@@ -7,7 +7,10 @@ interface Props {
 }
 const UserListLayout = (props: Props) => {
   return (
-    <div style={{ width: props.width, maxHeight: props.maxHeight, height: props.height }} className={classes["table-container"]}>
+    <div
+      style={{ width: props.width, maxHeight: props.maxHeight, height: props.height }}
+      className={classes["table-container"]}
+    >
       {props.children}
     </div>
   );

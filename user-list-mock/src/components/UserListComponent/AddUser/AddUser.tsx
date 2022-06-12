@@ -28,7 +28,10 @@ const AddUser = () => {
   const submitHandler = (userDto: UserDto) => {};
 
   return (
-    <div style={{ display: addUserContext.isFormClosed ? "none" : "block" }} className={classes.container}>
+    <div
+      style={{ display: addUserContext.isFormClosed ? "none" : "block" }}
+      className={classes.container}
+    >
       <button onClick={closeFormHandler} className={classes["btn-close"]}>
         Close
       </button>

@@ -18,7 +18,7 @@ const AddUserProvider = (props: any) => {
   };
 
   const defaultState = {
-    isFormClosed: isFormClosed,
+    isFormClosed,
     closeForm,
     openForm,
   };

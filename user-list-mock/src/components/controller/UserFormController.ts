@@ -12,7 +12,13 @@ export class UserFormController {
     lng,
   });
 
-  public injectAddress = (street: string, suite: string, city: string, zipcode: string, geo: Geo): Address => ({
+  public injectAddress = (
+    street: string,
+    suite: string,
+    city: string,
+    zipcode: string,
+    geo: Geo
+  ): Address => ({
     street,
     suite,
     city,
