@@ -1,4 +1,4 @@
-import { UserFormController } from "../components/UserListComponent/UserForm/UserFormController";
+import { UserFormController } from "../components/controller/UserFormController";
 import { UserService } from "../services/UserService";
 
 export abstract class InjectDependency {

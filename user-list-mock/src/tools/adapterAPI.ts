@@ -1,5 +1,3 @@
-import { ServerResponse } from "http";
-import { ServerStreamResponseOptions } from "http2";
 import { DeleteUserResponse } from "../services/interfaces/ResponseInterfaces";
 
 export const getAPI = async (url: string, ...params: string[]): Promise<any> => {
@@ -22,13 +20,14 @@ export const postAPI = async (url: string, body: object) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const genericResponseRaw = await fetch(url, requestParams);
+    const genericResponseRaw: Response = await fetch(url, requestParams);
     const genericResponse = await genericResponseRaw.json();
-    return genericResponse;
+    return { genericResponseRaw, genericResponse };
   } catch (error) {
     throw error;
   }
 };
+
 export const updateAPI = async (url: string, body: object) => {
   try {
     const requestParams = {

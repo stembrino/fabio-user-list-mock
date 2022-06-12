@@ -20,7 +20,10 @@ const UserListRow = (props: Props) => {
   return (
     <>
       <div
-        style={{ backgroundColor: isRowSelected ? "#d0433c" : "white", color: isRowSelected ? "#efefef" : "inherit" }}
+        style={{
+          backgroundColor: isRowSelected ? "#d0433c" : "white",
+          color: isRowSelected ? "#efefef" : "inherit",
+        }}
         onClick={toggletRowHandler}
         className={classes.row}
       >

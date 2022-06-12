@@ -49,6 +49,8 @@ const UserDetails = (props: Props) => {
         submitHandler={submitHandlerCallback}
         deleteHandler={deleteHandlerCallback}
         blockButtons={blockButtons}
+        display="flex"
+        hasIdField={true}
       />
     </>
   );

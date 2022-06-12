@@ -12,6 +12,10 @@ interface Props {
   deleteHandler?: any;
   hideEditBtn?: boolean;
   hideDeleteBtn?: boolean;
+  display: string;
+  hasIdField?: boolean;
+  cleanFields?: any;
+  cleanFieldsAfterSubmit?: boolean;
 }
 
 const userFormController = InjectDependency.injectUserFormController();
@@ -123,63 +127,162 @@ const UserForm = (props: Props) => {
     props.editHandler();
   };
 
-  const submiHandler = (event: any) => {
+  const cleanFields = () => {
+    setName("");
+    setUsername("");
+    setEmail("");
+    setPhone("");
+    setStreet("");
+    setWebsite("");
+    setSuite("");
+    setCity("");
+    setZipcode("");
+    setLat("");
+    setLng("");
+    setCompanyName("");
+    setCatchPhrase("");
+    setBs("");
+  };
+
+  const submiHandler = async (event: any) => {
     event.preventDefault();
     const geo = userFormController.injectGeo(lat, lng);
     const companyInfo: Company = userFormController.injectCompany(companyName, catchPhrase, bs);
     const address: Address = userFormController.injectAddress(street, suite, city, zipcode, geo);
-    const userDto: UserDto = userFormController.injectUserDto(props.userDto.id, name, username, email, address, phone, website, companyInfo);
-    console.debug("send user to Edit", userDto);
+    const userDto: UserDto = userFormController.injectUserDto(
+      name,
+      username,
+      email,
+      address,
+      phone,
+      website,
+      companyInfo,
+      props.userDto.id
+    );
     const isValiduser = userFormController.validateUser(userDto);
-    isValiduser && props.submitHandler(userDto);
+    isValiduser && (await props.submitHandler(userDto));
+    props.cleanFieldsAfterSubmit && cleanFields();
   };
 
   const deleteHandler = async (event: any) => {
     event.preventDefault();
-    props.deleteHandler(userDto.id.toString());
+    props.deleteHandler(userDto.id);
   };
 
-  const buttonStyles = { margin: "10px 5px 10px 5px", cursor: "pointer", backgroundColor: props.enableEdit ? "#c5c5c5" : "" };
+  const buttonStyles = {
+    margin: "10px 5px 10px 5px",
+    cursor: "pointer",
+    backgroundColor: props.enableEdit ? "#c5c5c5" : "",
+  };
 
   const displayInputContent = (value: string, callbackFunciont: any, type: string = "text") => {
-    return props.enableEdit ? <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} /> : <span>{value}</span>;
+    const isDisplayBlock = props.display === "block";
+    const inputToDisplayBlock = (
+      <div>
+        <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />
+      </div>
+    );
+    const inputToOthersDisplays = (
+      <input type={type} value={value} onChange={callbackFunciont} disabled={!props.enableEdit} />
+    );
+    if (!props.enableEdit) {
+      return <span>{value}</span>;
+    }
+    if (isDisplayBlock) {
+      return inputToDisplayBlock;
+    }
+    return inputToOthersDisplays;
   };
+
+  const displayIdField = () =>
+    props.hasIdField && (
+      <div>
+        {" "}
+        ID: <span>{userDto.id}</span>{" "}
+      </div>
+    );
 
   return (
     <form onSubmit={submiHandler}>
-      <div className={`${classes["detail-container"]} ${props.enableEdit ? "" : classes["remove-all-styles"]}`}>
+      <div
+        className={`${classes["detail-container"]} ${
+          props.enableEdit ? "" : classes["remove-all-styles"]
+        }`}
+      >
         <div className={classes.label}>USER INFO:</div>
-        <div className={`${classes["first-block"]} ${classes.block}`}>
+        <div
+          className={`${classes["first-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
+          {displayIdField()}
           <div>
-            ID: <span>{userDto.id}</span>
+            <label>NAME:</label> {displayInputContent(name, nameHandleChange)}
           </div>
-          <div>NAME: {displayInputContent(name, nameHandleChange)}</div>
-          <div>USER NAME: {displayInputContent(username, usernameHandleChange)}</div>
-          <div>E-MAIL: {displayInputContent(email, emailHandleChange, "email")}</div>
-          <div>PHONE: {displayInputContent(phone, phoneHandleChange)}</div>
-          <div>SUIT: {displayInputContent(website, websiteHandleChange)}</div>
+          <div>
+            <label>USER NAME:</label> {displayInputContent(username, usernameHandleChange)}
+          </div>
+          <div>
+            <label>E-MAIL:</label> {displayInputContent(email, emailHandleChange, "email")}
+          </div>
+          <div>
+            <label>PHONE:</label>
+            {displayInputContent(phone, phoneHandleChange)}
+          </div>
+          <div>
+            <label>SUIT:</label>
+            {displayInputContent(website, websiteHandleChange)}
+          </div>
         </div>
         <div className={classes.label}>ADDRESS:</div>
-        <div className={`${classes["second-block"]} ${classes.block}`}>
-          <div>STREET: {displayInputContent(street, streetHandleChange)}</div>
-          <div>SUIT: {displayInputContent(suite, suiteHandleChange)}</div>
-          <div>CITY: {displayInputContent(city, cityHandleChange)}</div>
-          <div>ZIPCODE: {displayInputContent(zipcode, zipCodeHandleChange)}</div>
+        <div
+          className={`${classes["second-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
+          <div>
+            <label>STREET:</label> {displayInputContent(street, streetHandleChange)}
+          </div>
+          <div>
+            <label>SUIT:</label> {displayInputContent(suite, suiteHandleChange)}
+          </div>
+          <div>
+            <label>CITY:</label> {displayInputContent(city, cityHandleChange)}
+          </div>
+          <div>
+            <label>ZIPCODE:</label> {displayInputContent(zipcode, zipCodeHandleChange)}
+          </div>
         </div>
-        <div className={`${classes["second-sub-block"]} ${classes.block}`}>
+        <div
+          className={`${classes["second-sub-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
           <div className={"italic"}>
-            GEO: (lat) {displayInputContent(lat, latCodeHandleChange)} (lng) {displayInputContent(lng, lngCodeHandleChange)}
+            <label>GEO:</label> (lat) {displayInputContent(lat, latCodeHandleChange)} (lng){" "}
+            {displayInputContent(lng, lngCodeHandleChange)}
           </div>
         </div>
         <div className={classes.label}>BUSINESS INFO:</div>
-        <div className={`${classes["third-block"]} ${classes.block}`}>
-          <div>COMPANY: {displayInputContent(companyName, companyNameCodeHandleChange)}</div>
-          <div>PHRASE: {displayInputContent(catchPhrase, catchPhraseCodeHandleChange)}</div>
-          <div>BS: {displayInputContent(bs, bsCodeHandleChange)}</div>
+        <div
+          className={`${classes["third-block"]} ${classes.block}`}
+          style={{ display: props.display }}
+        >
+          <div>
+            <label>COMPANY:</label> {displayInputContent(companyName, companyNameCodeHandleChange)}
+          </div>
+          <div>
+            <label>PHRASE:</label> {displayInputContent(catchPhrase, catchPhraseCodeHandleChange)}
+          </div>
+          <div>
+            <label>BS:</label> {displayInputContent(bs, bsCodeHandleChange)}
+          </div>
         </div>
       </div>
       <div className={classes["panel-buttons"]}>
-        <button style={buttonStyles} onClick={editHandler} disabled={props.blockButtons} hidden={props.hideEditBtn}>
+        <button
+          style={buttonStyles}
+          onClick={editHandler}
+          disabled={props.blockButtons}
+          hidden={props.hideEditBtn}
+        >
           EDIT
         </button>
         <input type="submit" value="SUBMIT" disabled={!props.enableEdit || props.blockButtons} />
