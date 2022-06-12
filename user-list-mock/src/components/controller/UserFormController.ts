@@ -1,6 +1,10 @@
 import { Address, Company, Geo, UserDto } from "../../services/interfaces/dto/UserDto";
 
 export class UserFormController {
+  public static EDIT_ERROR_MSG =
+    "Server erro when editing User. Jsonserver not accept edit an added User";
+  public static DELETE_ERROR_MSG = "Server erro when delete User.";
+  public static FIVE_SEC = 5000;
   public injectCompany = (name: string, catchPhrase: string, bs: string): Company => ({
     name,
     catchPhrase,
