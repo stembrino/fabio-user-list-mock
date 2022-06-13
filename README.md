@@ -26,14 +26,14 @@ Chalange objectives.
 2. Run command to install all dependencies: `npm install`
 3. Run project: `npm start`
 
-## Architecture project
+## Project Architecture
 
 | COMPONENTS        | Description                                                                                                                          |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | Layout            | Store layouts like sidebar, navbar or others specific layout to position in main content page.                                       |
 | UI                | Store all components that there is no relation with others, like button or loading icon.                                             |
 | UserListComponent | The table list component. The table list component has strict dependencies with User Model. This user model has the following types: |
-| AlertError       | Alert error component managed by AlertProvider                                                                                       |
+| AlertError        | Alert error component managed by AlertProvider                                                                                       |
 | config            | Some complex config props to inject in component                                                                                     |
 | contoroller       | A layer to allow organize and reuse code to some kind of process like validation or adapter objects                                  |
 | mock              | Store some mock. only use in develop mode.                                                                                           |
