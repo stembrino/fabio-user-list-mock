@@ -49,8 +49,19 @@ Chalange objectives.
 | alert-store     | Alert warn state management. This component appear to inform user when some request fail |
 | user-list-store | User list state management                                                               |
 
+| TOOLS            | Description                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| adapterAPI       | Design pattern in order to make easier replace some process.                                                   |
+| helper           | reuse some process without component relation                                                                  |
+| injectDependency | Layer to avois instantiate directely in component. This make the unit test and the controll instatiate easier. |
+
+---
+
+## TODO List
+
 | TODO                       | DESCRIPTION                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Dosckerfile/Docker Compose | Easy way to deploy or run                                                                                                   |
+| Dockerfile/Docker Compose | Easy way to deploy or run                                                                                                   |
 | Unit Tests                 | Mainly in service or Controller layer                                                                                       |
 | Refactoring                | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |
+| Documentation              | describe the properties of each component                                                                                   |
