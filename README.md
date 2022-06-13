@@ -31,16 +31,16 @@ Chalange objectives.
 | COMPONENTS        | Description                                                                                                                          |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | Layout            | Store layouts like sidebar, navbar or others specific layout to position in main content page.                                       |
-| UI                | store all components that there is no relation with others, like button or loading icon.                                             |
+| UI                | Store all components that there is no relation with others, like button or loading icon.                                             |
 | UserListComponent | The table list component. The table list component has strict dependencies with User Model. This user model has the following types: |
-| Alert Error       | Alert error component managed by AlertProvider                                                                                       |
-| config            | some complex config props to inject in component                                                                                     |
+| AlertError       | Alert error component managed by AlertProvider                                                                                       |
+| config            | Some complex config props to inject in component                                                                                     |
 | contoroller       | A layer to allow organize and reuse code to some kind of process like validation or adapter objects                                  |
-| mock              | store some mock. only use in develop mode.                                                                                           |
+| mock              | Store some mock. only use in develop mode.                                                                                           |
 
 | SERVICE      | Description                                             |
 | ------------ | ------------------------------------------------------- |
-| interfaces   | store the schema from some Data Ttransefer Object (DTO) |
+| interfaces   | Store the schema from some Data Ttransefer Object (DTO) |
 | UserServices | Layer to assembly the DTO                               |
 
 | STORE           | Description                                                                              |
@@ -52,16 +52,16 @@ Chalange objectives.
 | TOOLS            | Description                                                                                                    |
 | ---------------- | -------------------------------------------------------------------------------------------------------------- |
 | adapterAPI       | Design pattern in order to make easier replace some process.                                                   |
-| helper           | reuse some process without component relation                                                                  |
+| helper           | Reuse some process without component relation                                                                  |
 | injectDependency | Layer to avois instantiate directely in component. This make the unit test and the controll instatiate easier. |
 
 ---
 
 ## TODO List
 
-| TODO                       | DESCRIPTION                                                                                                                 |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| TODO                      | DESCRIPTION                                                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | Dockerfile/Docker Compose | Easy way to deploy or run                                                                                                   |
-| Unit Tests                 | Mainly in service or Controller layer                                                                                       |
-| Refactoring                | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |
-| Documentation              | describe the properties of each component                                                                                   |
+| Unit Tests                | Mainly in service or Controller layer                                                                                       |
+| Refactoring               | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |
+| Documentation             | Describe the properties of each component                                                                                   |
