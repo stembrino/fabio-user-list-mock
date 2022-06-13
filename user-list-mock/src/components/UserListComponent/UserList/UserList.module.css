@@ -1,9 +1,0 @@
-.user-list-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  cursor: pointer;
-  width: inherit;
-  height: inherit;
-  font-size: inherit;
-}
