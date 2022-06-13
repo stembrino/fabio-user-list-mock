@@ -10,26 +10,27 @@ import UserListProvider from "./store/user-list-store/UserListProvider";
 import AddUserProvider from "./store/add-user-store/AddUserProvider";
 import AppLayout from "./components/Layout/AppLayout/AppLayout";
 import ToolbarLayout from "./components/Layout/ToolbarLayout/AddUserFormLayout";
+import AlertErros from "./components/AlertErros/AlertErros";
+import WrapStores from "./store/WrapStores";
 
 function App() {
   return (
     <div className="App">
       <main className="mian-content">
-        <UserListProvider>
-          <AddUserProvider>
-            <AppLayout>
-              <ToolbarLayout>
-                <AddUserBtn />
-              </ToolbarLayout>
-              <UserListLayout width="80vw" height="60vh">
-                <UserList headerConfig={headerConfig} />
-              </UserListLayout>
-              <AddUserFormLayout>
-                <AddUser />
-              </AddUserFormLayout>
-            </AppLayout>
-          </AddUserProvider>
-        </UserListProvider>
+        <WrapStores>
+          <AppLayout>
+            <ToolbarLayout>
+              <AddUserBtn />
+            </ToolbarLayout>
+            <UserListLayout width="80vw" height="60vh">
+              <UserList headerConfig={headerConfig} />
+            </UserListLayout>
+            <AddUserFormLayout>
+              <AddUser />
+            </AddUserFormLayout>
+          </AppLayout>
+          <AlertErros message="Error" />
+        </WrapStores>
       </main>
     </div>
   );

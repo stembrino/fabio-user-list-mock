@@ -122,8 +122,28 @@ const UserForm = (props: Props) => {
     setBs(bsCodeEdited);
   };
 
+  const setPrevState = () => {
+    setName(userDto.name);
+    setUsername(userDto.username);
+    setEmail(userDto.email);
+    setPhone(userDto.phone);
+    setStreet(userDto.address.street);
+    setWebsite(userDto.website);
+    setSuite(userDto.address.suite);
+    setCity(userDto.address.city);
+    setZipcode(userDto.address.zipcode);
+    setLat(address.geo.lat);
+    setLng(address.geo.lng);
+    setCompanyName(userDto.company.name);
+    setCatchPhrase(userDto.company.catchPhrase);
+    setBs(userDto.company.bs);
+  };
+
   const editHandler = (e: any) => {
     e.preventDefault();
+    if (props.enableEdit) {
+      setPrevState();
+    }
     props.editHandler();
   };
 
