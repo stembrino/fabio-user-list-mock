@@ -1,6 +1,6 @@
 # fabio-user-list-mock
 
-Framework: React with Typescript
+Framework: `React/React Hooks` with `Typescript`
 
 Chalange objectives.
 
@@ -12,11 +12,11 @@ Chalange objectives.
 - Action to remove user from the list.
 - Action to edit and save any user detail.
 - The selected line should highlight itself in the following primary  
-  color: #d0433c
+  color: `#d0433c`
 - The hover line should highlight itself in the following primary color:
-  #e59f9b
-- On the text columns, format all strings to bold and uppercase
-- The table header must be fixed or sticky
+  `#e59f9b`
+- On the text columns, format all strings to `bold` and `uppercase`
+- The table header must be `fixed` or `sticky`
 - Bonus:
 - Write a short documentation.
 
@@ -34,6 +34,20 @@ Chalange objectives.
 | UI                | store all components that there is no relation with others, like button or loading icon.                                             |
 | UserListComponent | The table list component. The table list component has strict dependencies with User Model. This user model has the following types: |
 | Alert Error       | Alert error component managed by AlertProvider                                                                                       |
+| config            | some complex config props to inject in component                                                                                     |
+| contoroller       | A layer to allow organize and reuse code to some kind of process like validation or adapter objects                                  |
+| mock              | store some mock. only use in develop mode.                                                                                           |
+
+| SERVICE      | Description                                             |
+| ------------ | ------------------------------------------------------- |
+| interfaces   | store the schema from some Data Ttransefer Object (DTO) |
+| UserServices | Layer to assembly the DTO                               |
+
+| STORE           | Description                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| add-user-store  | Add user state management.                                                               |
+| alert-store     | Alert warn state management. This component appear to inform user when some request fail |
+| user-list-store | User list state management                                                               |
 
 | TODO                       | DESCRIPTION                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
