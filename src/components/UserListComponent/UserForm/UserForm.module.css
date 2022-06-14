@@ -64,6 +64,6 @@
 @media (max-width: 1395px) {
   /* CSS */
   .block {
-    display: block;
+    display: block !important;
   }
 }
