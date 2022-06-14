@@ -2,6 +2,8 @@
 
 Framework: `React/React Hooks` with `Typescript`
 
+### Preview app: https://stembrino.github.io/fabio-user-list-mock
+
 Chalange objectives.
 
 - Show a list of users. (1)
@@ -22,7 +24,7 @@ Chalange objectives.
 
 ## Run project
 
-1. Go to package.json level: `cd user-list-mock`
+1. Go to project package.json
 2. Run command to install all dependencies: `npm install`
 3. Run project: `npm start`
 
@@ -65,4 +67,3 @@ Chalange objectives.
 | Unit Tests                | Mainly in service or Controller layer                                                                                       |
 | Refactoring               | Remove context from User list and passing the User list as props to UserList component to make this component more reusable |
 | Documentation             | Describe the properties of each component                                                                                   |
-| Publish with GitHub pages | Probabily will need change project level: user-list-mock should be in fabio-user-list-mock root folder                      |
